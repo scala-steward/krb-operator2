@@ -13,7 +13,7 @@ object Dependencies {
   lazy val logbackClassic =
     "ch.qos.logback" % "logback-classic" % "1.4.5"
 
-  val pureConfigVersion = "0.17.2"
+  val pureConfigVersion = "0.17.3"
   lazy val pureConfig =
     "com.github.pureconfig" %% "pureconfig" % pureConfigVersion
 
