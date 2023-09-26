@@ -1,7 +1,7 @@
 -- use local imports for development or local operator repo
--- let k8s = ./manifest/k8s.dhall
+let k8s = ./manifest/k8s.dhall
 -- use remote import when dhall files from GitHub
-let k8s = https://raw.githubusercontent.com/novakov-alexey/krb-operator/master/manifest/k8s.dhall
+-- let k8s = https://raw.githubusercontent.com/novakov-alexey/krb-operator/master/manifest/k8s.dhall
 
 let schemas = k8s.schemas
 
@@ -15,7 +15,7 @@ let deployment =
       schemas.Deployment::{
       , metadata = schemas.ObjectMeta::{ name = Some deploymentName }
       , spec = Some schemas.DeploymentSpec::{
-        , replicas = Some +1
+        , replicas = Some 1
         , selector = schemas.LabelSelector::{
           , matchLabels = Some
             [ { mapKey = "deployment", mapValue = deploymentName } ]
@@ -51,14 +51,14 @@ let deployment =
                     , value = Some "false"
                     }
                   ]
-                , image = Some "alexeyn/kerberos-operator:${version}"
+                , image = Some "alexeyn/kerberos-operator2:${version}"
                 , imagePullPolicy = Some "Always"
                 , livenessProbe = Some schemas.Probe::{
                   , exec = Some schemas.ExecAction::{
                     , command = Some [ "pgrep", "-fl", "kerberos-operator" ]
                     }
-                  , initialDelaySeconds = Some +20
-                  , periodSeconds = Some +20
+                  , initialDelaySeconds = Some 20
+                  , periodSeconds = Some 20
                   }
                 , name = deploymentName
                 , volumeMounts = Some
@@ -74,7 +74,7 @@ let deployment =
             , volumes = Some
               [ schemas.Volume::{
                 , configMap = Some schemas.ConfigMapVolumeSource::{
-                  , defaultMode = Some +511
+                  , defaultMode = Some 511
                   , name = Some "krb-logback"
                   }
                 , name = "logback-xml"

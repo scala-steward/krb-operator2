@@ -24,9 +24,7 @@ object KrbOperator extends IOApp with Codecs {
 
   val kubernetesClient =
     KubernetesClient[IO](
-      KubeConfig.fromFile[IO](
-        new File(s"${System.getProperty("user.home")}/.kube/config")
-      )
+      KubeConfig.inHomeDir[IO]
     )
 
   override def run(args: List[String]): IO[ExitCode] =

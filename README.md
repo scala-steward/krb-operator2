@@ -40,8 +40,7 @@ export NAMESPACE=<put desired namespace>
 
 ```bash
 # install RBAC
-wget -O- -q https://raw.githubusercontent.com/novakov-alexey/krb-operator2/master/manifest/rbac.dhall | \
-    dhall-to-yaml | kubectl create -n ${NAMESPACE} -f -
+wget -O- -q https://raw.githubusercontent.com/novakov-alexey/krb-operator2/master/manifest/rbac.dhall | dhall-to-yaml | kubectl create -n ${NAMESPACE} -f -
 
 # install operator
 wget -O- -q https://raw.githubusercontent.com/novakov-alexey/krb-operator2/master/manifest/kube-deployment.dhall | \

@@ -1,5 +1,5 @@
 export NAMESPACE=test
-export OPERATOR_VERSION=0.1.0
+export OPERATOR_VERSION=0.1.2
 
 release:
 	sbt -mem 2048 compile test 'release with-defaults'
