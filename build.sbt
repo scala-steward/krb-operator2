@@ -18,7 +18,7 @@ lazy val root = (project in file("."))
       logbackClassic,
       scalaTest % Test
     ),
-    dockerBaseImage := "adoptopenjdk/openjdk11:jre-11.0.9_11.1-alpine",
+    dockerBaseImage := "eclipse-temurin:11",
     Docker / dockerRepository := Some("alexeyn"),
     Universal / javaOptions ++= Seq(
       "-Dlogback.configurationFile=/opt/conf/logback.xml"
